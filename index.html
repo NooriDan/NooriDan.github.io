@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Danial Noori Zadeh</title>
+  <title>Danial Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inconsolata:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
@@ -285,14 +285,32 @@
       .tab-bar button{padding:0 10px;font-size:11px;}
       .nav-id{display:none;}
     }
+
+    .bio-photo {
+      width: 340px;
+      height: 440px;
+      border-radius: 20%;
+      object-fit: cover;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .proj-card-img {
+      width: 80%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+
   </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <!-- FIX 5: "Danial" → "D. Noori Zadeh" for academic consistency -->
-    <span class="nav-id">D. Noori Zadeh</span>
+    <span class="nav-id">Danial's Portfolio</span>
     <ul class="tab-bar">
       <li><button class="active" data-tab="bio">Bio</button></li>
       <li><button data-tab="publications">Publications</button></li>
@@ -308,6 +326,7 @@
   <div class="wrap">
     <div class="bio-layout">
       <div>
+        <img src="assets/Danial-Photo.png" alt="Danial Noori Zadeh" class="bio-photo" />
         <h1 class="bio-name">Danial<br/><em>Noori Zadeh</em></h1>
         <p class="bio-subtitle">Researcher | Engineer | Open-source Developer</p>
         <div class="bio-body">
@@ -335,7 +354,7 @@
         <div class="stats-strip">
           <div class="stat-item"><div class="stat-val">4</div><div class="stat-lbl">Papers</div></div>
           <div class="stat-item"><div class="stat-val">2</div><div class="stat-lbl">PyPI Pkgs</div></div>
-          <div class="stat-item"><div class="stat-val">4+</div><div class="stat-lbl">Years TA</div></div>
+          <div class="stat-item"><div class="stat-val">3+</div><div class="stat-lbl">Years TA</div></div>
         </div>
 
       </div>
@@ -378,7 +397,7 @@
               <div class="entry-line"></div>
               <div>
                 <div class="entry-inst">McMaster University</div>
-                <div class="entry-name"><a href="https://www.photon.utoronto.ca/research" target="_blank">MacAnalog Research Group ↗</a></div>
+                <div class="entry-name"><a href="https://www.macanalog.com/" target="_blank">MacAnalog Research Group ↗</a></div>
                 <div class="entry-meta">Summer 2024</div>
               </div>
             </div>
@@ -520,7 +539,7 @@
     <div class="proj-category">
       <div class="proj-cat-header">
         <div class="proj-cat-icon icon-rf">📡</div>
-        <div class="proj-cat-name">Hardware &amp; RF Design<span>Analog / RFIC</span></div>
+        <div class="proj-cat-name">Chip Design <span>Analog / RF / Photonics</span></div>
       </div>
       <div class="proj-cards">
         <a href="https://doi.org/10.3390/electronics15030515" target="_blank" class="proj-card rf full">
@@ -528,12 +547,13 @@
             <div class="proj-card-name">Tunable Common-Gate Bandpass TIA — 3.5 GHz</div>
             <div class="proj-card-arrow">↗</div>
           </div>
-          <div class="proj-card-desc">Novel tunable transimpedance bandpass filter targeting 3.5 GHz (5G / Radio-over-Fiber). Used SymXplorer to systematically explore topology candidates from nodal equations, then sized and SPICE-verified the design. Published in <em>Electronics</em> 2026.</div>
+          <div class="proj-card-desc">Novel tunable transimpedance bandpass filter in 65nm CMOS technology targeting 3.5 GHz (5G / Radio-over-Fiber). Used SymXplorer to systematically explore topology candidates from nodal equations, then sized and SPICE-verified the design. Published in <em>Electronics</em> 2026.</div>
+          <!-- <img src="assets/BPF_LAYOUT.png" alt="Tunable Common-Gate Bandpass TIA Layout" class="proj-card-img" /> -->
           <div class="proj-card-tags">
             <span class="ptag ptag-blue">3.5 GHz TIA</span>
             <span class="ptag ptag-blue">Bandpass Filter · RoF</span>
             <span class="ptag ptag-teal">Symbolic EDA</span>
-            <span class="ptag ptag-gray">IHP SG13G2 PDK · xschem · klayout</span>
+            <span class="ptag ptag-gray">65nm CMOS PDK · Cadence Virtuoso</span>
           </div>
         </a>
       </div>
@@ -545,7 +565,7 @@
         <div class="proj-cat-name">Embedded Systems<span>Hardware / Firmware</span></div>
       </div>
       <div class="proj-cards">
-        <a href="https://github.com/cappy-group10" target="_blank" class="proj-card emb full">
+        <a href="" target="_blank" class="proj-card emb full">
           <div class="proj-card-top">
             <div class="proj-card-name">Formula Electric Inverter — Capstone</div>
             <div class="proj-card-arrow">↗</div>
@@ -558,7 +578,7 @@
             <span class="ptag ptag-gray">C2000 DSP · Simulink · Embedded C</span>
           </div>
         </a>
-        <a href="https://github.com/NooriDan/ShiftScheduler" target="_blank" class="proj-card emb">
+        <a href="" target="_blank" class="proj-card emb">
           <div class="proj-card-top">
             <div class="proj-card-name">ClassBridge / ShiftScheduler</div>
             <div class="proj-card-arrow">↗</div>
