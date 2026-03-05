@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danial Noori Zadeh — Researcher & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0c0f;
+      --surface: #111418;
+      --border: #1e2530;
+      --accent: #00e5c0;
+      --accent2: #5b8dff;
+      --accent3: #ff6b6b;
+      --text: #e8eaf0;
+      --muted: #7a8394;
+      --card: #13171f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID NOISE BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,192,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,192,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: rgba(0,229,192,0.07);
+      top: -200px; left: -100px;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: rgba(91,141,255,0.07);
+      bottom: 200px; right: -100px;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      background: rgba(10,12,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 0 100px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(52px, 8vw, 88px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-weight: 500;
+    }
+    .btn-primary:hover {
+      background: #00c4a7;
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: transparent;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* ── SECTION ── */
+    section {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .about-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .meta-item {
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+    .meta-item:hover { border-color: rgba(0,229,192,0.3); }
+    .meta-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .meta-value {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(0,229,192,0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+    }
+    .project-arrow {
+      color: var(--muted);
+      font-size: 20px;
+      flex-shrink: 0;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .project-card:hover .project-arrow {
+      transform: translate(3px, -3px);
+      color: var(--accent);
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .tag-teal { background: rgba(0,229,192,0.1); color: var(--accent); border: 1px solid rgba(0,229,192,0.2); }
+    .tag-blue { background: rgba(91,141,255,0.1); color: var(--accent2); border: 1px solid rgba(91,141,255,0.2); }
+    .tag-red  { background: rgba(255,107,107,0.1); color: var(--accent3); border: 1px solid rgba(255,107,107,0.2); }
+    .tag-gray { background: rgba(122,131,148,0.1); color: var(--muted); border: 1px solid rgba(122,131,148,0.2); }
+
+    .project-meta {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .project-stat {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .project-stat span { color: var(--text); }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pub-item {
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .pub-item:hover { border-color: rgba(91,141,255,0.3); }
+    .pub-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--accent2);
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+    .pub-venue {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+    .pub-title {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .pub-authors {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .pub-doi {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent2);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .pub-doi:hover { opacity: 1; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .skill-group {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .skill-group-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-pill {
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .contact-icon { font-size: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 120px; }
+      .project-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <span class="nav-brand">danial.noorizadeh</span>
+      <ul class="nav-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#publications">papers</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="container">
+    <section class="hero" id="home">
+      <div>
+        <p class="hero-eyebrow">// researcher · developer · engineer</p>
+        <h1>Danial<br /><em>Noori Zadeh</em></h1>
+        <p class="hero-desc">
+          Building tools at the intersection of analog circuit design and intelligent automation.
+          EDA researcher focused on symbolic analysis, SPICE-in-the-loop optimization, and
+          agentic design workflows.
+        </p>
+        <div class="hero-links">
+          <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+          <a href="https://github.com/NooriDan" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/danialnoorizad/" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label reveal">01 — About</p>
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <p>
+            I'm a <strong>student, researcher, and developer</strong> based in Canada, working on
+            Electronic Design Automation (EDA) for analog circuits. My work centers on automating
+            the hardest parts of analog design — topology exploration, symbolic analysis, and
+            component sizing.
+          </p>
+          <p>
+            My research tools — <strong>SymXplorer</strong> and <strong>SpiceXplorer</strong> —
+            are open-source Python packages published on PyPI, used by researchers to derive
+            symbolic transfer functions and run SPICE-in-the-loop optimization with Bayesian
+            and evolutionary algorithms.
+          </p>
+          <p>
+            I'm also interested in combinatorial optimization and scheduling algorithms, and have
+            built practical tools like <strong>ShiftScheduler</strong> to solve real-world
+            assignment problems.
+          </p>
+        </div>
+        <div class="about-meta">
+          <div class="meta-item">
+            <p class="meta-label">Location</p>
+            <p class="meta-value">Canada 🇨🇦</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">Research Focus</p>
+            <p class="meta-value">Analog EDA · Symbolic Circuits · Optimization</p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">ORCID</p>
+            <p class="meta-value"><a href="https://orcid.org/0009-0001-8998-3343" target="_blank" style="color: var(--accent); text-decoration:none;">0009-0001-8998-3343</a></p>
+          </div>
+          <div class="meta-item">
+            <p class="meta-label">Primary Language</p>
+            <p class="meta-value">Python · MATLAB · C++</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label reveal">02 — Projects</p>
+      <h2 class="section-title reveal">Open Source Work</h2>
+      <br/>
+      <div class="projects-grid">
+
+        <!-- SymXplorer -->
+        <a href="https://github.com/NooriDan/SymXplorer" target="_blank" class="project-card reveal">
+          <div class="project-header">
+            <span class="project-name">SymXplorer</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <p class="project-desc">
+            A symbolic math toolbox for exploring the design space of analog circuits.
+            Derives and analyzes symbolic transfer functions using SymPy, supports pre-defined
+            models for Sallen-Key, Multiple-Feedback, and Differential topologies, and automates
+            topology exploration. Sized, symbolically or with SPICE, for a given frequency
+            response using Bayesian optimization (Ax) or Evolutionary algorithms (Nevergrad).
+            Published on PyPI. Includes a vision for LLM-driven agentic design workflows.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-teal">Symbolic Analysis</span>
+            <span class="tag tag-teal">Analog EDA</span>
+            <span class="tag tag-blue">Bayesian Optimization</span>
+            <span class="tag tag-blue">Evolutionary Algorithms</span>
+            <span class="tag tag-gray">Python</span>
+            <span class="tag tag-gray">SymPy</span>
+            <span class="tag tag-gray">PyPI</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-stat">★ <span>7 stars</span></span>
+            <span class="project-stat">⑂ <span>2 forks</span></span>
+            <span class="project-stat">◎ <span>240 commits</span></span>
+          </div>
+        </a>
+
+        <!-- SpiceXplorer -->
+        <a href="https://github.com/MacAnalog/SpiceXplorer" target="_blank" class="project-card reveal">
+          <div class="project-header">
+            <span class="project-name">SpiceXplorer</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <p class="project-desc">
+            A Pythonic, OOP-first compilation of circuit optimization algorithms with
+            SPICE simulation-in-the-loop support. Extracted from SymXplorer to focus
+            specifically on optimization-driven analog circuit sizing. Integrates with
+            optimizers such as Ax and Nevergrad, and provides scalable orchestration of
+            design parameters, measurements, and technology constraints via a
+            declarative YAML-based "Optimization Plan".
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-teal">SPICE-in-the-loop</span>
+            <span class="tag tag-teal">Circuit Sizing</span>
+            <span class="tag tag-blue">ngspice</span>
+            <span class="tag tag-blue">Ax · Nevergrad</span>
+            <span class="tag tag-gray">Python</span>
+            <span class="tag tag-gray">MacAnalog Org</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-stat">◈ <span>Active development</span></span>
+            <span class="project-stat">◎ <span>65 commits</span></span>
+          </div>
+        </a>
+
+        <!-- ShiftScheduler -->
+        <a href="https://github.com/NooriDan/ShiftScheduler" target="_blank" class="project-card reveal">
+          <div class="project-header">
+            <span class="project-name">ShiftScheduler</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <p class="project-desc">
+            A scheduling optimization tool that assigns Teaching Assistants to lab and tutorial
+            sections based on their availability and shift preferences. Solves a constrained
+            assignment problem to maximize preference satisfaction while meeting coverage
+            requirements — a practical application of combinatorial optimization.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-red">Combinatorial Optimization</span>
+            <span class="tag tag-red">Scheduling</span>
+            <span class="tag tag-gray">Python</span>
+            <span class="tag tag-gray">Constraint Solving</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-stat">◈ <span>Practical utility tool</span></span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <p class="section-label reveal">03 — Publications</p>
+      <h2 class="section-title reveal">Research Papers</h2>
+      <br/>
+      <div class="pub-list">
+
+        <div class="pub-item reveal">
+          <span class="pub-year">2026</span>
+          <div>
+            <p class="pub-venue">Electronics · MDPI Journal · Vol. 15, No. 3</p>
+            <p class="pub-title">SymXplorer: Symbolic Analog Topology Exploration of a Tunable Common-Gate Bandpass TIA for Radio-over-Fiber Applications</p>
+            <p class="pub-authors">Danial Noori Zadeh, Mohamed B. Elamien</p>
+            <a href="https://doi.org/10.3390/electronics15030515" target="_blank" class="pub-doi">DOI: 10.3390/electronics15030515 ↗</a>
+          </div>
+        </div>
+
+        <div class="pub-item reveal">
+          <span class="pub-year">2025</span>
+          <div>
+            <p class="pub-venue">IEEE MWSCAS 2025 · 68th International Midwest Symposium</p>
+            <p class="pub-title">SymXplorer: A Designer's Toolbox for Automated Analog Circuit Topology Exploration</p>
+            <p class="pub-authors">Danial Noori Zadeh, Mohamed B. Elamien</p>
+            <a href="https://doi.org/10.1109/MWSCAS53549.2025.11244398" target="_blank" class="pub-doi">DOI: 10.1109/MWSCAS53549.2025.11244398 ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label reveal">04 — Skills</p>
+      <h2 class="section-title reveal">Technical Stack</h2>
+      <br/>
+      <div class="skills-grid reveal">
+        <div class="skill-group">
+          <p class="skill-group-name">Languages</p>
+          <div class="skill-items">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">MATLAB</span>
+            <span class="skill-pill">C++</span>
+            <span class="skill-pill">SPICE</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">EDA / Analog</p>
+          <div class="skill-items">
+            <span class="skill-pill">ngspice</span>
+            <span class="skill-pill">LTspice</span>
+            <span class="skill-pill">xschem</span>
+            <span class="skill-pill">klayout</span>
+            <span class="skill-pill">IHP SG13G2</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Optimization</p>
+          <div class="skill-items">
+            <span class="skill-pill">Bayesian Opt.</span>
+            <span class="skill-pill">Ax</span>
+            <span class="skill-pill">Nevergrad</span>
+            <span class="skill-pill">Evolutionary</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Libraries</p>
+          <div class="skill-items">
+            <span class="skill-pill">SymPy</span>
+            <span class="skill-pill">spicelib</span>
+            <span class="skill-pill">lcapy</span>
+            <span class="skill-pill">TensorFlow</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Research Areas</p>
+          <div class="skill-items">
+            <span class="skill-pill">Analog EDA</span>
+            <span class="skill-pill">Symbolic Analysis</span>
+            <span class="skill-pill">Active Filters</span>
+            <span class="skill-pill">OTA Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-name">Other</p>
+          <div class="skill-items">
+            <span class="skill-pill">LaTeX</span>
+            <span class="skill-pill">Jupyter</span>
+            <span class="skill-pill">PyPI packaging</span>
+            <span class="skill-pill">Git</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label reveal">05 — Contact</p>
+      <h2 class="section-title reveal">Get in Touch</h2>
+      <p class="reveal" style="color: var(--muted); margin-bottom: 40px; font-weight: 300; max-width: 480px;">
+        Interested in analog EDA research, collaborations, or just want to talk circuits and optimization?
+      </p>
+      <div class="contact-row reveal">
+        <a href="https://github.com/NooriDan" target="_blank" class="contact-link">
+          <span class="contact-icon">⌥</span> github.com/NooriDan
+        </a>
+        <a href="https://www.linkedin.com/in/danialnoorizad/" target="_blank" class="contact-link">
+          <span class="contact-icon">◈</span> LinkedIn
+        </a>
+        <a href="https://orcid.org/0009-0001-8998-3343" target="_blank" class="contact-link">
+          <span class="contact-icon">◎</span> ORCID
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Built with care · <a href="https://github.com/NooriDan" target="_blank">Danial Noori Zadeh</a> · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 80 + 'ms';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
