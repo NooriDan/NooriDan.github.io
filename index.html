@@ -304,77 +304,19 @@
       border: 1px solid var(--border);
     }
 
-    /* Photo Cards with Captions */
-    .photo-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.25s, border-color 0.25s;
-      cursor: pointer;
-    }
-    .photo-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--teal);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    }
-    .photo-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-    }
-    .photo-caption {
-      padding: 14px 18px;
-      font-size: 13px;
-      color: var(--text2);
-      border-top: 1px solid var(--border);
-    }
-    .photo-caption strong {
-      color: var(--text);
-      display: block;
-      font-size: 15px;
-      margin-bottom: 2px;
-      font-weight: 400;
-    }
-
-    /* Interactive Lightbox Overlay */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(6, 8, 11, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+    .simple-gallery {
       display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin-top: 24px;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
     }
-    .lightbox.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .lightbox-img {
-      max-width: 90%;
-      max-height: 90vh;
-      border-radius: 8px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      color: var(--text);
-      font-size: 40px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      transition: color 0.2s;
-    }
-    .lightbox-close:hover {
-      color: var(--teal);
+    .simple-gallery img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
   </style>
 </head>
@@ -847,21 +789,35 @@
 
 <!-- TAB 6 — Photography -->
 <div class="tab-panel" id="tab-photography">
-<div class="wrap">
-  <p class="section-kicker">Gallery</p>
-  <h2 class="section-title">Through My Lens</h2>
-  <p class="section-sub">A collection of my hobby photography, capturing moments outside the lab.</p>
-  <div class="photo-grid">
-    
-    <div class="photo-card" onclick="openLightbox('assets/gallery/Shiraz_EramGarden.png')">
-    <img src="assets/gallery/Shiraz_EramGarden.png" alt="Eram Garden" class="photo-img" />
-    <div class="photo-caption">
-      <strong>Shiraz, Iran</strong>
-      Exploring the ancient ruins at sunset.
+  <div class="wrap">
+    <p class="section-kicker">Gallery</p>
+    <h2 class="section-title">Through My Lens</h2>
+    <p class="section-sub">A collection of my hobby photography.</p>
+
+    <div class="simple-gallery">
+      <img src="assets/gallery/USA_NYC_4.jpg" alt="NYC BROOKLYN" />
+      <img src="assets/gallery/USA_NYC_1.jpg" alt="NYC SUBWAY" />
+      <img src="assets/gallery/USA_NYC_3.jpg" alt="NYC LIBERTY" />
+      <img src="assets/gallery/USA_NYC_5.jpg" alt="NYC COP CITY" />
+      <img src="assets/gallery/USA_NYC_2.jpg" alt="NYC ISLAND" />
+      <img src="assets/gallery/USA_NYC_6.jpg" alt="NYC BOAT" />
+      <img src="assets/gallery/USA_NYC_7.jpg" alt="NYC TIME SQUARE" />
+      <img src="assets/gallery/Turkey_Konya_1.jpg" alt="Konya 1" />
+      <img src="assets/gallery/Turkey_Konya_2.jpg" alt="Konya 2" />
+      <img src="assets/gallery/Turkey_Konya_3.jpg" alt="Konya 3" />
+      <img src="assets/gallery/Turkey_Konya_4.jpg" alt="Konya 4" />
+      <img src="assets/gallery/Turkey_Ankara_1.jpg" alt="Ankara 1" />
+      <img src="assets/gallery/Turkey_Ankara_2.jpg" alt="Ankara 2" />
+      <img src="assets/gallery/Turkey_Ankara_3.jpg" alt="Ankara 3" />
+      <img src="assets/gallery/Turkey_Ankara_5.jpg" alt="Ankara 5" />
+      <img src="assets/gallery/Random_BrokenMirrors.jpg" alt="Broken Mirrors" />
+      <img src="assets/gallery/Canada_Hamilton_1.jpg" alt="Hamilton" />
+      <img src="assets/gallery/Canada_McMaster_1.jpg" alt="McMaster" />
+      <img src="assets/gallery/Canada_Timmins_1.jpg" alt="Timmins" />
+      <img src="assets/gallery/Shiraz_EramGarden.png" alt="Shiraz Eram Garden" />
+      <img src="assets/gallery/Shiraz_emirates.png" alt="Shiraz Emirates" />
+      <img src="assets/gallery/Shiraz_emirates_2.png" alt="Shiraz Emirates 2" />
     </div>
-
-
-
   </div>
 </div>
 
